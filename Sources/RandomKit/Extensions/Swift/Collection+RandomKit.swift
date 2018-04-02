@@ -78,16 +78,7 @@ extension RandomRetrievableInRange where Self: Collection, Self.Index: RandomInR
 
 }
 
-extension RandomRetrievableInRange where Self: Collection, Self.Index: RandomInRange, Self.IndexDistance: RandomToValue {
-
-    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
-    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Iterator.Element {
-        return self[Index.uncheckedRandom(in: range, using: &randomGenerator)]
-    }
-
-}
-
-extension Collection where Self: RandomRetrievableInRange, IndexDistance: RandomToValue {
+extension Collection where Self: RandomRetrievableInRange {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
     public func uncheckedRandom<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Iterator.Element {
